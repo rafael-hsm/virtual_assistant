@@ -2,6 +2,8 @@ from datetime import datetime
 import os
 import sys
 
+import browser
+
 from gtts import gTTS
 from playsound import playsound
 import speech_recognition as sr
@@ -50,9 +52,19 @@ def execute_commands(message):
         os.system("shutdown -s -t 1800")
     elif "cancelar desligamento" in message:
         os.system("shutdown -a")
+    elif "toca" and "corinthians" in message:
+        playlists("corinthians")
+    elif "toca" and "take on me" in message:
+        playlists("take on me")
         
-    
-    
+
+def playlists(song):
+    if song == "corinthians":
+        browser.open("https://open.spotify.com/track/4uDa7Ga41Vehc7mHDotQMt?si=4567982bfdf347ef")
+    elif song == "take on me":
+        browser.open("https://open.spotify.com/track/2WfaOiMkCvy7F5fcp2zZ8L?si=a78c6fd2bb3f464c")
+
+
 def main():
     while True:
         monitoring_audio()
